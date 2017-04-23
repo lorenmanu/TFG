@@ -1,0 +1,4 @@
+tfg\OfertaBundle\Entity\Oferta:
+  properties:
+    nombre:
+      - NotBlank: ~

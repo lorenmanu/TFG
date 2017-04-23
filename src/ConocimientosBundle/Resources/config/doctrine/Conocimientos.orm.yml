@@ -1,0 +1,15 @@
+ConocimientosBundle\Entity\Conocimientos:
+    type: entity
+    table: null
+    repositoryClass: ConocimientosBundle\Repository\ConocimientosRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        conocimientos:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

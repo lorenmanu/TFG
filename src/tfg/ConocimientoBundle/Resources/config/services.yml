@@ -1,0 +1,4 @@
+services:
+#    conocimiento.example:
+#        class: tfg\ConocimientoBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

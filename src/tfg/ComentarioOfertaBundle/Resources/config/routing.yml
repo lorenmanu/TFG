@@ -1,0 +1,3 @@
+comentario_oferta_homepage:
+    path:     /
+    defaults: { _controller: ComentarioOfertaBundle:Default:index }

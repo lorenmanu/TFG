@@ -1,0 +1,19 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+      app.brochure_uploader:
+          class: tfg\OfertaBundle\FileUploader
+          arguments: ['%brochures_directory%']
+      admin.oferta:
+          class: tfg\OfertaBundle\Admin\OfertaAdmin
+          arguments: [~, tfg\OfertaBundle\Entity\Oferta, ~]
+          tags:
+            - { name: sonata.admin, manager_type: orm, label: Oferta }
+      admin.conocimiento:
+                class: tfg\ConocimientoBundle\Admin\ConocimientoAdmin
+                arguments: [~, tfg\ConocimientoBundle\Entity\Conocimiento, ~]
+                tags:
+                  - { name: sonata.admin, manager_type: orm, label: Conocimiento }

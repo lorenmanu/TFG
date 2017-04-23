@@ -1,0 +1,81 @@
+<?php
+// src/AppBundle/Admin/ProductAdmin.php
+namespace AppBundle\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+
+class ProductAdmin extends AbstractAdmin
+{
+   // Fields to be shown on create/edit forms
+   protected function configureFormFields(FormMapper $formMapper)
+{
+      $formMapper
+         ->add('temp')
+         ->add('id')
+         ->add('name')
+         ->add('nombre')
+         ->add('slug')
+         ->add('descripcion')
+         ->add('condiciones')
+         ->add('rutaFoto')
+         ->add('fechaInicio')
+	 ->add('fechaFin')
+         ->add('conocimiento')
+	 ->add('palabrasClave')
+	 ->add('visitasOferta')		
+         ->add('subConocimiento')
+         ->add('file')	
+	 ->add('brochure')
+	 ->add('comentarios')	
+	 ->add('contacto');
+}
+
+// Fields to be shown on filter forms
+protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+{
+      $datagridMapper
+         ->add('temp')
+         ->add('id')
+         ->add('name')
+         ->add('nombre')
+         ->add('slug')
+         ->add('descripcion')
+         ->add('condiciones')
+         ->add('rutaFoto')
+         ->add('fechaInicio')
+	 ->add('fechaFin')
+         ->add('conocimiento')
+	 ->add('palabrasClave')
+	 ->add('visitasOferta')		
+         ->add('subConocimiento')
+         ->add('file')	
+	 ->add('brochure')
+	 ->add('comentarios')	
+	 ->add('contacto');
+}
+// Fields to be shown on lists
+protected function configureListFields(ListMapper $listMapper)
+{
+      $datagridMapper
+         ->add('temp')
+         ->add('id')
+         ->add('name')
+         ->add('nombre')
+         ->add('slug')
+         ->add('descripcion')
+         ->add('condiciones')
+         ->add('rutaFoto')
+         ->add('fechaInicio')
+	 ->add('fechaFin')
+         ->add('conocimiento')
+	 ->add('palabrasClave')
+	 ->add('visitasOferta')		
+         ->add('subConocimiento')
+         ->add('file')	
+	 ->add('brochure')
+	 ->add('comentarios')	
+	 ->add('contacto');
+    }
+}

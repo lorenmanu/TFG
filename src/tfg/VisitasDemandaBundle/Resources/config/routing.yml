@@ -1,0 +1,3 @@
+visitas_demanda_homepage:
+    path:     /
+    defaults: { _controller: VisitasDemandaBundle:Default:index }

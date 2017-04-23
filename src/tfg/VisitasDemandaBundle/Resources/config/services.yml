@@ -1,0 +1,4 @@
+services:
+#    visitas_demanda.example:
+#        class: tfg\VisitasDemandaBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

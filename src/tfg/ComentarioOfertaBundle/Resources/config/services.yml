@@ -1,0 +1,4 @@
+services:
+#    comentario_oferta.example:
+#        class: tfg\ComentarioOfertaBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "symfony/assetic-bundle": "^2.8",
+        "sonata-project/user-bundle": "2.2.4"
+    }
+}

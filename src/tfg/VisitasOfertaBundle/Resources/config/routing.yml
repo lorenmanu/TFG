@@ -1,0 +1,3 @@
+visitas_oferta_homepage:
+    path:     /
+    defaults: { _controller: VisitasOfertaBundle:Default:index }
