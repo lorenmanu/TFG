@@ -30,8 +30,6 @@ class AppKernel extends Kernel
             new tfg\VisitasOfertaBundle\VisitasOfertaBundle(),
             new tfg\VisitasDemandaBundle\VisitasDemandaBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new tfg\ConocimientoBundle\ConocimientoBundle(),
-            new tfg\SubConocimientoBundle\SubConocimientoBundle(),
 
             // ...
             new Sonata\MediaBundle\SonataMediaBundle(),
@@ -40,8 +38,9 @@ class AppKernel extends Kernel
 
             // You need to add this dependency to make media functional
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            // ...,
-            new ConocimientosBundle\ConocimientosBundle()
+            new tfg\AreaBundle\AreaBundle(),
+            new tfg\RamaBundle\RamaBundle(),
+            new tfg\DisciplinaBundle\DisciplinaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

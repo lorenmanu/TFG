@@ -12,8 +12,18 @@ services:
           arguments: [~, tfg\OfertaBundle\Entity\Oferta, ~]
           tags:
             - { name: sonata.admin, manager_type: orm, label: Oferta }
-      admin.conocimiento:
-                class: tfg\ConocimientoBundle\Admin\ConocimientoAdmin
-                arguments: [~, tfg\ConocimientoBundle\Entity\Conocimiento, ~]
-                tags:
-                  - { name: sonata.admin, manager_type: orm, label: Conocimiento }
+      admin.area:
+        class: tfg\AreaBundle\Admin\AreaAdmin
+        arguments: [~, tfg\AreaBundle\Entity\Area, ~]
+        tags:
+          - { name: sonata.admin, manager_type: orm, label: Area }
+      admin.rama:
+          class: tfg\RamaBundle\Admin\RamaAdmin
+          arguments: [~, tfg\RamaBundle\Entity\Rama, ~]
+          tags:
+            - { name: sonata.admin, manager_type: orm, label: Rama }
+      admin.disciplina:
+        class: tfg\DisciplinaBundle\Admin\DisciplinaAdmin
+        arguments: [~, tfg\DisciplinaBundle\Entity\Disciplina, ~]
+        tags:
+          - { name: sonata.admin, manager_type: orm, label: Disciplina }

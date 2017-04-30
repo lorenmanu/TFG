@@ -1,0 +1,124 @@
+<?php
+namespace tfg\AreaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Area
+ */
+class Area
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     */
+    private $descripcion;
+
+    /**
+      * One Product has Many Features.
+      * @ORM\OneToMany(targetEntity="tfg\RamaBundle\Entity\Rama", mappedBy="area")
+    */
+
+    private $ramas;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     * @return Area
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     * @return Area
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    public function __construct()
+    {
+      $this->ramas = new ArrayCollection();
+      /*
+      $conocimiento = new Conocimiento();
+      */
+    }
+
+    public function getRamas(){
+      return $this->ramas;
+    }
+
+    /**
+     * Add ramass
+     *
+     * @param \tfg\RamaBundle\Entity\Rama $ramas
+     * @return Oferta
+     */
+    public function addComentario(\tfg\RamaOfertaBundle\Entity\Comentario $ramas)
+    {
+        $this->ramas[] = $ramas;
+
+        return $this;
+    }
+
+    /**
+     * Remove Ramas
+     *
+     * @param \tfg\RamaOfertaBundle\Entity\Rama $ramas
+     */
+    public function removeRama(\tfg\RamaOfertaBundle\Entity\Rama $ramas)
+    {
+        $this->ramass->removeElement($comentarios);
+    }
+}

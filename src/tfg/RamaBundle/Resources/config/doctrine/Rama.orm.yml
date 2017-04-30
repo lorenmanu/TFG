@@ -1,0 +1,18 @@
+tfg\RamaBundle\Entity\Rama:
+    type: entity
+    table: null
+    repositoryClass: tfg\RamaBundle\Repository\RamaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombre:
+            type: string
+            length: 255
+            unique: true
+        descripcion:
+            type: text
+    lifecycleCallbacks: {  }

@@ -1,0 +1,20 @@
+tfg\AreaBundle\Entity\Area:
+    type: entity
+    table: null
+    repositoryClass: tfg\AreaBundle\Repository\AreaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombre:
+            type: string
+            length: 255
+            unique: true
+        descripcion:
+            type: string
+            length: 255
+            unique: true
+    lifecycleCallbacks: {  }

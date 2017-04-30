@@ -1,0 +1,11 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    <div>
+        <strong>{{ object.numeroDisciplinas() }}</strong> <br />
+        {{object.disciplinas}}
+        {% for rama in object.getDisciplinas() %}
+          <strong> {{ rama.getNombre() }}</strong> <br />
+        {% endfor %}
+    </div>
+{% endblock %}

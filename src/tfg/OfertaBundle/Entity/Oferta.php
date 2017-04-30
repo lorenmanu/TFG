@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Doctrine\Common\Collections\ArrayCollection;
 use tfg\ComentarioOfertaBundle\Entity;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use \tfg\ConocimientoBundle\Entity\Conocimiento;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -102,11 +101,6 @@ class Oferta
     private $visitasOferta;
 
     /**
-    * @ORM\ManyToOne(targetEntity="tfg\SubConocimientoBundle\Entity\SubConocimiento")
-    */
-    private $subConocimiento;
-
-    /**
      * Get id
      *
      * @return integer
@@ -129,7 +123,9 @@ class Oferta
        * @ORM\JoinColumn(name="conocimiento_id", referencedColumnName="id")
        * @ORM\JoinColumn(nullable=false)
        */
+       /*
       private $conocimiento;
+      */
 
       /**
       * Constructor
@@ -138,7 +134,9 @@ class Oferta
       public function __construct()
       {
         $this->comentarios = new ArrayCollection();
+        /*
         $conocimiento = new Conocimiento();
+        */
       }
 
       public function getComentarios(){
@@ -267,86 +265,6 @@ class Oferta
         return $this->condiciones;
     }
 
-    /**
-     * Get primerCampo
-     *
-     * @return string
-     */
-    public function getPrimerCampo()
-    {
-        if( $this->conocimiento && $this->conocimiento->getPrimerCampo()){
-          return  $this->conocimiento->getPrimerCampo();
-        }
-        else{
-          return "indefinido";
-        }
-    }
-
-    /**
-     * Set fechaInicio
-     *
-     * @param \DateTime $fechaInicio
-     *
-     */
-    public function setPrimerCampo($primerCampo)
-    {
-        $this->conocimiento->setPrimerCampo($primerCampo);
-
-    }
-
-    /**
-     * Get primerCampo
-     *
-     * @return string
-     */
-    public function getSegundoCampo()
-    {
-        if( $this->conocimiento && $this->conocimiento->getSegundoCampo()){
-          return  $this->conocimiento->getSegundoCampo();
-        }
-        else{
-          return "indefinido";
-        }
-    }
-
-    /**
-     * Set fechaInicio
-     *
-     * @param \DateTime $fechaInicio
-     *
-     */
-    public function setSegundoCampo($segundoCampo)
-    {
-        $this->conocimiento->setSegundoCampo($segundoCampo);
-
-    }
-
-    /**
-     * Get primerCampo
-     *
-     * @return string
-     */
-    public function getTerceroCampo()
-    {
-        if( $this->conocimiento && $this->conocimiento->getTerceroCampo()){
-          return  $this->conocimiento->getTerceroCampo();
-        }
-        else{
-          return "indefinido";
-        }
-    }
-
-    /**
-     * Set fechaInicio
-     *
-     * @param \DateTime $fechaInicio
-     *
-     */
-    public function setTerceroCampo($TerceroCampo)
-    {
-        $this->conocimiento->setTerceroCampo($TerceroCampo);
-
-    }
 
     /**
      * Set fechaInicio
@@ -463,29 +381,6 @@ class Oferta
         return $this->visitasOferta;
     }
 
-    /**
-     * Set subConocimiento
-     *
-     * @param \tfg\SubConocimientoBundle\Entity\SubConocimiento $subConocimiento
-     * @return Oferta
-     */
-    public function setSubConocimiento(\tfg\SubConocimientoBundle\Entity\SubConocimiento $subConocimiento = null)
-    {
-        $this->subConocimiento = $subConocimiento;
-
-        return $this;
-    }
-
-    /**
-     * Get subConocimiento
-     *
-     * @return \tfg\SubConocimientoBundle\Entity\SubConocimiento
-     */
-    public function getSubConocimiento()
-    {
-        return $this->subConocimiento;
-    }
-
 
     protected function getUploadRootDir()
     {
@@ -585,32 +480,5 @@ public function removeUpload()
     {
         //$this->setUpdated(new \DateTime());
     }
-
-    // ... the rest of your class lives under here, including the generated fields
-    //     such as filename and updated
-
-    /**
-     * Set conocimiento
-     *
-     * @param \tfg\ConocimientoBundle\Entity\Conocimiento $conocimiento
-     * @return Oferta
-     */
-    public function setConocimiento(\tfg\ConocimientoBundle\Entity\Conocimiento $conocimiento = null)
-    {
-        $this->conocimiento = $conocimiento;
-
-        return $this;
-    }
-
-    /**
-     * Get conocimiento
-     *
-     * @return \tfg\ConocimientoBundle\Entity\Conocimiento
-     */
-    public function getConocimiento()
-    {
-        return $this->conocimiento;
-    }
-
 
 }

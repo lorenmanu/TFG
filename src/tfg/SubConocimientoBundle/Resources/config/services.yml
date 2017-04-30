@@ -1,4 +1,0 @@
-services:
-#    sub_conocimiento.example:
-#        class: tfg\SubConocimientoBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]

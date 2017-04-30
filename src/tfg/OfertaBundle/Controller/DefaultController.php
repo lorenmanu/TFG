@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use tfg\ComentarioOfertaBundle\Entity\ComentarioOferta;
-use tfg\ConocimientoBundle\Entity\Conocimiento;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use tfg\OfertaBundle\Form\Type\OfertaType;
 
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -156,7 +156,7 @@ class DefaultController extends Controller
     $entidad->setFechaInicio(new \DateTime('today'));
     $entidad->setFechaFin(new \DateTime('today'));
     $entidad->setContacto("pruebsddssqxsqs1zdqq2a");
-    $entidad->setConocimiento("prdudssqx1dsqzqqesb2a");
+    //$entidad->setConocimiento("prdudssqx1dsqzqqesb2a");
     $entidad->setPalabrasClave("pdrsusqsx1qsqzdqdeb2a");
     $em->persist($entidad);
     //$em->flush();
@@ -174,84 +174,15 @@ class DefaultController extends Controller
     return $this->render('OfertaBundle:Default:portada.html.twig.php', array('oferta' => $entidad));
   }
 
-  public function getPrimerCampo(){
-    $primerNivel = array("Primer Nivel");
-    $repository = $this->getDoctrine()->getRepository('ConocimientoBundle:Conocimiento');
-    $conocimientos = $repository->findAll(); // Limi
-
-    foreach ($conocimientos as $conocimiento) {
-      array_push($primerNivel, $conocimiento->getPrimerCampo());
-    }
-
-    return $primerNivel;
-  }
-
-  public function getSegundoCampo($primerCampo){
-    $segundoNivel = array("Segundo Nivel");
-    $repository = $this->getDoctrine()->getRepository('ConocimientoBundle:Conocimiento');
-    $conocimientos = $repository->findByPrimerCampo($primerCampo);
-
-    foreach ($conocimientos as $conocimiento) {
-      array_push($primerNivel, $conocimiento->getPrimerCampo());
-    }
-
-    return $segundoNivel;
-  }
-
-  public function getTercerCampo($segundoCampo){
-    $tercerNivel = array("Tercer Nivel");
-    $repository = $this->getDoctrine()->getRepository('ConocimientoBundle:Conocimiento');
-    $conocimientos = $repository->findByPrimerCampo($segundoCampo);
-
-    foreach ($conocimientos as $conocimiento) {
-      array_push($tercerNivel, $conocimiento->getTercerCampo());
-    }
-
-    return $tercerNivel;
-
-  }
   public function subirOfertaAction(Request $request){
 
-    $oferta = new Oferta();
-    $conocimiento = new Conocimiento();
-
-    $repository = $this->getDoctrine()->getRepository('ConocimientoBundle:Conocimiento');
-    $conocimientos = $repository->findAll(); // Limi
-
-    foreach($conocimientos as $conocimiento){
-            $test[] = array($conocimiento->getPrimerCampo()=>array($conocimiento->getSegundoCampo()=>$conocimiento->getTercerCampo()));
-    }
-
-
-    $formConocimiento = $this->createFormBuilder($conocimiento)
-                                                ->setAction($this->generateUrl('addOferta'))
-                                                ->add('primerCampo', ChoiceType::class, array(
-                                                    'choices' => $test,
-                                                    'choices_as_values' => true,
-                                                ))
-                                                ->getForm();
-
-    $formOferta = $this->createFormBuilder($oferta)
-                                    ->add('nombre','text')
-                                    ->add('slug','text')
-                                    ->add('descripcion', 'textarea', array('label' => 'Descripcion', 'attr' => array('class' => 'descripcion')))
-                                    ->add('condiciones','textarea')
-                                    ->add('fechaInicio','datetime',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'datepicker')))
-                                    ->add('fechaFin','datetime',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'date')))
-                                    ->add('contacto','email')
-                                    ->add('conocimiento','text')
-                                    ->add('palabrasClave','text')
-                                    ->add('saveAndAdd','submit')
-                                    ->add('conocimiento', CollectionType::class , array('class' => 'tfg\ConocimientoBundle\Entity\Conocimiento'))
-                                    ->add('brochure', FileType::class, array('label' => 'Brochure (IMAGE file)'))
-                                    ->setAction($this->generateUrl('addOferta'))
-                                    ->getForm();
+    $formOferta = $this->createForm(new OfertaType(),$oferta = new Oferta());
+    $formOferta->handleRequest($request);
 
     $formOferta->handleRequest($request);
-    $formConocimiento->handleRequest($request);
 
 
-    if($formOferta->isValid() && $formConocimiento){
+    if($formOferta->isValid()){
       $nextAction = $formOferta->get('saveAndAdd')->isClicked()
           ? 'mostrarOfertas'
           : 'addOferta';
@@ -295,11 +226,18 @@ class DefaultController extends Controller
         return $this->redirectToRoute('mostrarOfertas', array('page' => 0,'cursorScroll' => 0));
     }
 
+    $ramas = $this->getDoctrine()
+          ->getRepository('RamaBundle:Rama')
+          ->findByNombre('ff');
+
+    //$disciplinas = $ramas->getDisciplinas();
+
 
     //return $this->redirect($this->generateUrl($nextAction));
     return $this->render('OfertaBundle:Default:addOferta.html.twig', array(
           'formOferta' => $formOferta->createView(),
-          'formConocimiento' => $formConocimiento->createView()
+          'ramas' => $ramas
+          //'disciplinas' => $disciplinas
         ));
 
   }

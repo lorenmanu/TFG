@@ -81,10 +81,9 @@
 						</ul>
 					</div>
 				</div><div class="general">
-				  <div class="menus">
+					<div class="menus">
 						{{ knp_menu_render('OfertaBundle:Builder:mainMenu') }}
 					</div>
-
 				{% block side %}
 
 				{% endblock %}

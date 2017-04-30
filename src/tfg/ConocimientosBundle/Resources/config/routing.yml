@@ -1,3 +1,0 @@
-conocimientos_homepage:
-    path:     /
-    defaults: { _controller: ConocimientosBundle:Default:index }

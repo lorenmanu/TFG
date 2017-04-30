@@ -1,3 +1,0 @@
-sub_conocimiento_homepage:
-    path:     /
-    defaults: { _controller: SubConocimientoBundle:Default:index }

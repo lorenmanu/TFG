@@ -54,16 +54,12 @@
            {{ form_label(formOferta.contacto) }}
            {{ form_widget(formOferta.contacto, { 'attr': {'class': 'contacto'} }) }}
 
-           {{ form_label(formOferta.conocimiento) }}
-           {{ form_widget(formOferta.conocimiento, { 'attr': {'class': 'conocimiento'} }) }}
 
            {{ form_label(formOferta.palabrasClave) }}
            {{ form_widget(formOferta.palabrasClave, { 'attr': {'class': 'palabrasClave'} }) }}
 
            {{ form_label(formOferta.brochure) }}
            {{ form_widget(formOferta.brochure, { 'attr': {'class': 'file'} }) }}
-
-           {{ form_widget(formConocimiento.primerCampo, { 'separator': '=====' }) }}
 
 
 
@@ -77,7 +73,11 @@
 
 
 
-
+           <ul>
+               {% for rama in ramas %}
+                   {{ dump(rama, rama.disciplinas) }}
+               {% endfor %}
+           </ul>
 
       </div>
     </div>
