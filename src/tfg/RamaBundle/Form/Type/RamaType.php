@@ -31,16 +31,19 @@ class RamaType extends AbstractType
         $builder
         ->add('nombre','text')
         ->add('descripcion', 'textarea', array('label' => 'Descripcion', 'attr' => array('class' => 'descripcion')))
-        ->add('disciplinas', DisciplinaType::class, array(
+        ->add('disciplinas',  EntityType::class, array(
+            // query choices from this entity
+            'class' => 'DisciplinaBundle:Disciplina',
 
-                       // use the User.username property as the visible option string
-                       'choice_label' => 'nombre',
+            // use the User.username property as the visible option string
+            'choice_label' => 'disciplina',
 
-                       // used to render a select box, check boxes or radios
-                       'multiple' => true,
-                       // 'multiple' => true,
-                       // 'expanded' => true,
-                     ));
+            // used to render a select box, check boxes or radios
+            'multiple' => true,
+            'expanded' => true,
+            'by_reference' => 'false'
+        ))
+        ->add('saveAndAdd','submit');
 ;
     }
 

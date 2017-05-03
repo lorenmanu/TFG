@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Doctrine\Common\Collections\ArrayCollection;
 use tfg\ComentarioOfertaBundle\Entity;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -100,11 +101,6 @@ class Oferta
     private $visitasOferta;
 
     /**
-    * @ORM\ManyToOne(targetEntity="tfg\SubConocimientoBundle\Entity\SubConocimiento")
-    */
-    private $subConocimiento;
-
-    /**
      * Get id
      *
      * @return integer
@@ -127,7 +123,9 @@ class Oferta
        * @ORM\JoinColumn(name="conocimiento_id", referencedColumnName="id")
        * @ORM\JoinColumn(nullable=false)
        */
+       /*
       private $conocimiento;
+      */
 
       /**
       * Constructor
@@ -136,6 +134,9 @@ class Oferta
       public function __construct()
       {
         $this->comentarios = new ArrayCollection();
+        /*
+        $conocimiento = new Conocimiento();
+        */
       }
 
       public function getComentarios(){
@@ -265,7 +266,6 @@ class Oferta
     }
 
 
-
     /**
      * Set fechaInicio
      *
@@ -381,29 +381,6 @@ class Oferta
         return $this->visitasOferta;
     }
 
-    /**
-     * Set subConocimiento
-     *
-     * @param \tfg\SubConocimientoBundle\Entity\SubConocimiento $subConocimiento
-     * @return Oferta
-     */
-    public function setSubConocimiento(\tfg\SubConocimientoBundle\Entity\SubConocimiento $subConocimiento = null)
-    {
-        $this->subConocimiento = $subConocimiento;
-
-        return $this;
-    }
-
-    /**
-     * Get subConocimiento
-     *
-     * @return \tfg\SubConocimientoBundle\Entity\SubConocimiento
-     */
-    public function getSubConocimiento()
-    {
-        return $this->subConocimiento;
-    }
-
 
     protected function getUploadRootDir()
     {
@@ -504,6 +481,4 @@ public function removeUpload()
         //$this->setUpdated(new \DateTime());
     }
 
-    // ... the rest of your class lives under here, including the generated fields
-    //     such as filename and updated
 }

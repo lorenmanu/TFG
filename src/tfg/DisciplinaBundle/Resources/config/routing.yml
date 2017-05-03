@@ -1,3 +1,9 @@
 disciplina_homepage:
-    path:     /
+    path:     /disciplinas/
     defaults: { _controller: DisciplinaBundle:Default:index }
+addDisciplina:
+    path:     /disciplinas/addDisciplina/
+    defaults: { _controller: DisciplinaBundle:Default:subirDisciplina }
+mostrarDisciplinas:
+        path:     /mostrarDisciplinas/
+        defaults: { _controller: DisciplinaBundle:Default:mostrarDisciplinas }

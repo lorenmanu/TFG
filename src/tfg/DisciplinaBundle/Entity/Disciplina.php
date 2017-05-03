@@ -2,17 +2,27 @@
 
 namespace tfg\DisciplinaBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+use tfg\RamaBundle\Entity\Rama;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\ManyToMany;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Disciplina
+ *
+ * @ORM\Table(name="disciplina")
+ * @ORM\Entity(repositoryClass="tfg\DisciplinaBundle\Repository\DisciplinaRepository")
  */
 class Disciplina
 {
-    /**
-     * @var int
-     */
+  /**
+   * @var int
+   *
+   * @ORM\Column(name="id", type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
     private $id;
 
     /**
@@ -25,12 +35,13 @@ class Disciplina
      */
     private $descripcion;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity="tfg\RamaBundle\Entity\Rama", inversedBy="disciplinas",cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="rama_id", referencedColumnName="id")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Doctrine\Common\Collections\Collection|User[]
+     *
+     * @ManyToMany(targetEntity="tfg\RamaBundle\Entity\Rama", mappedBy="rama",fetch="EXTRA_LAZY")
      */
-    private $rama;
+    private $ramas;
 
     public function __toString(){
       return(string)  $this->getNombre();
@@ -40,30 +51,18 @@ class Disciplina
      return $this;
    }
 
+   public function setRamas($ramas){
+     $this->ramas = $rama;
+   }
 
-    /**
-     * Set rama
-     *
-     * @param string $area
-     * @return Rama
-     */
-    public function setRama($rama)
-    {
-        $this->rama = $rama;
+   public function getRamas(){
+     return $this->rama;
+   }
 
-        return $this;
-    }
-
-
-    /**
-     * Get rama
-     *
-     * @return string
-     */
-    public function getRama()
-    {
-        return $this->rama;
-    }
+   public function addRama($rama){
+     $this->ramas[]=$rama;
+     return $this->ramas;
+   }
 
     /**
      * Get id
@@ -119,5 +118,17 @@ class Disciplina
     public function getDescripcion()
     {
         return $this->descripcion;
+    }
+
+    public function getDisciplina(){
+      return $this;
+    }
+
+    public function __construct()
+    {
+      $this->ramas = new ArrayCollection();
+      /*
+      $conocimiento = new Conocimiento();
+      */
     }
 }

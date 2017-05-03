@@ -1,11 +1,17 @@
-{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% extends 'base.html.twig.php' %}
 
-{% block field %}
-    <div>
-        <strong>{{ object.numeroDisciplinas() }}</strong> <br />
-        {{object.disciplinas}}
-        {% for rama in object.getDisciplinas() %}
-          <strong> {{ rama.getNombre() }}</strong> <br />
-        {% endfor %}
+{% block side %}
+<div id="pagina">
+  <h1 id="titulo_pagina"><span class="texto_titulo">Presentación</span></h1>
+  <div id="contenido" class="sec_interior">
+    <div class="content_doku">
+            {% for disciplina in disciplinas  %}
+              <p id="nombre"> {{ disciplina.getNombre() }} </p>
+              <p id="ruta"> {{ disciplina.getDescripcion() }} </p>
+            {% endfor %}
+
+        </div>
     </div>
+ </div>
+
 {% endblock %}

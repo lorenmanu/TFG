@@ -5,17 +5,29 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Response;
+use tfg\DisciplinaBundle\Entity\Disciplina;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\JoinColumn;
+
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Rama
+ *
+ * @ORM\Table(name="rama")
+ * @ORM\Entity(repositoryClass="tfg\RamaaBundle\Repository\RamaRepository")
  */
 class Rama
 {
-    /**
-     * @var int
-     */
+  /**
+   * @var int
+   *
+   * @ORM\Column(name="id", type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
     private $id;
 
     /**
@@ -29,18 +41,26 @@ class Rama
     private $descripcion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="tfg\AreaBundle\Entity\Area", inversedBy="ramas")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
-     * @ORM\JoinColumn(nullable=false)
+     * @ManyToMany(targetEntity="tfg\AreaBundle\Entity\Area", inversedBy="disciplina")
+     * @JoinColumn(name="id_rama", referencedColumnName="id")
      */
     private $area;
 
     /**
-      * One Product has Many Features.
-      * @ORM\OneToMany(targetEntity="tfg\DisciplinaBundle\Entity\Disciplina", mappedBy="rama", cascade={"all"}, orphanRemoval=true)
-    */
-
-    private $disciplinas;
+     * @var \Doctrine\Common\Collections\ArrayCollection|Disciplinas[]
+     *
+     * @ManyToMany(targetEntity="tfg\DisciplinaBundle\Entity\Disciplina", inversedBy="ramas", fetch="EXTRA_LAZY")
+     * @JoinTable(
+     *  name="disciplina_ramas",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="rama_id", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="rama_id", referencedColumnName="id")
+     *  }
+     * )
+     */
+      private $disciplinas;
 
 
 
@@ -52,6 +72,10 @@ class Rama
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id){
+      $this->id=$id;
     }
 
     /**
@@ -132,54 +156,39 @@ class Rama
     }
 
     /**
-     * Add disciplinas
+     * Add disciplina
      *
-     * @param \tfg\DisciplinaBundle\Entity\Disciplina $disciplinas
-     * @return Rama
+     * @param \tfg\DisciplinasBundle\Entity\Disciplina $disciplina
+     * @return $rama
      */
-    public function addDisciplina($disciplinas)
+    public function addDisciplina($disciplina)
+    {   //dump(($this));
+        $this->disciplinas[] = $disciplina;
+        //dump(($rama));
+        //die();
+        return $this;
+    }
+
+    public function setDisciplinas(ArrayCollection $disciplinas)
     {
-
-        foreach ($disciplinas->toArray() as $disciplina) {
-            $disciplina->setRama($this);
-            //var_dump($disciplina);exit;
-        }
-
-        $this->disciplinas[]= $disciplinas;
-
+        $this->disciplinas = $disciplinas;
+        //dump(($rama));
+        //die();
         return $this;
     }
 
     /**
-     * Remove Disciplinas
+     * Remove disciplina
      *
-     * @param \tfg\RamaOfertaBundle\Entity\Rama $ramas
+     * @param \tfg\DisciplinaBundle\Entity\Disciplina $disciplina
      */
-    public function removeDisciplina(\tfg\DisciplinaBundle\Entity\Disciplina $disciplinas)
+    public function removeComentario(\tfg\DisciplinaBundle\Entity\Disciplina $disciplina)
     {
-        $this->diciplinas->removeElement($disciplinas);
+      $this->disciplinas->removeElement($disciplina);
     }
 
     public function getDisciplinas(){
       return $this->disciplinas;
     }
 
-    /**
-     * Get area
-     *
-     * @return string
-     */
-
-    public function __toString(){
-      return(string)  $this->getNombre();
-   }
-
-   public function getNumeroDisciplinas(){
-
-     return count($this->getDisciplinas());
-   }
-
-   public function setDisciplinas(ArrayCollection $disciplinas){
-     $this->disciplinas=$disciplinas;
-   }
 }

@@ -29,7 +29,8 @@ class DisciplinaType extends AbstractType
     {
         $builder
         ->add('nombre','text')
-        ->add('descripcion', 'textarea', array('label' => 'Descripcion', 'attr' => array('class' => 'descripcion')));
+        ->add('descripcion', 'textarea', array('label' => 'Descripcion', 'attr' => array('class' => 'descripcion')))
+        ->add('saveAndAdd','submit');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

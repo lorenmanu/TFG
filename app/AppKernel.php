@@ -40,7 +40,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new tfg\AreaBundle\AreaBundle(),
             new tfg\RamaBundle\RamaBundle(),
-            new tfg\DisciplinaBundle\DisciplinaBundle(),
+            new tfg\DisciplinaBundle\DisciplinaBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
@@ -48,6 +48,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Remg\GeneratorBundle\RemgGeneratorBundle();
         }
 
         return $bundles;

@@ -47,6 +47,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -145,3 +146,8 @@ knp_menu:
     templating: false
     # the renderer to use, list is also available by default
     default_renderer: twig
+
+remg_generator:
+    entity:
+        # available configuration formats are: 'annotation', 'yaml', 'xml' and 'php'.
+        configuration_format: annotation

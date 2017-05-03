@@ -30,6 +30,10 @@ demanda:
     resource: "@DemandaBundle/Resources/config/routing.yml"
     prefix:   /
 
+disciplina:
+    resource: "@DisicplinaBundle/Resources/config/routing.yml"
+    prefix:   /
+
 oferta:
     resource: "@OfertaBundle/Resources/config/routing.yml"
     prefix:   /

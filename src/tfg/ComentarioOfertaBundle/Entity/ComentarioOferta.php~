@@ -37,7 +37,7 @@ class ComentarioOferta
 
     /**
      * @ORM\ManyToOne(targetEntity="tfg\OfertaBundle\Entity\Oferta", inversedBy="comentarios")
-     * @ORM\JoinColumn(name="oferta_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      * @ORM\JoinColumn(nullable=false)
      */
     private $oferta;
