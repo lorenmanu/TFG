@@ -1,9 +1,3 @@
 rama_homepage:
-    path:     /ramas/
+    path:     /
     defaults: { _controller: RamaBundle:Default:index }
-addRama:
-    path:     /ramas/addRama/
-    defaults: { _controller: RamaBundle:Default:subirRama }
-mostrarRamas:
-        path:     /mostrarRamas/
-        defaults: { _controller: RamaBundle:Default:mostrarRamas }

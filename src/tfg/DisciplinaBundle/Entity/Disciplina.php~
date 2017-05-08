@@ -1,68 +1,54 @@
 <?php
 
 namespace tfg\DisciplinaBundle\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
-use tfg\RamaBundle\Entity\Rama;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\ManyToMany;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Disciplina
  *
- * @ORM\Table(name="disciplina")
- * @ORM\Entity(repositoryClass="tfg\DisciplinaBundle\Repository\DisciplinaRepository")
+ * @ORM\Table(name="Disciplina")
+ * @ORM\Entity
  */
 class Disciplina
 {
-  /**
-   * @var int
-   *
-   * @ORM\Column(name="id", type="integer")
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="AUTO")
-   */
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false, unique=true)
      */
     private $nombre;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=255, nullable=false, unique=true)
      */
     private $descripcion;
 
-
     /**
-     * @var \Doctrine\Common\Collections\Collection|User[]
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ManyToMany(targetEntity="tfg\RamaBundle\Entity\Rama", mappedBy="rama",fetch="EXTRA_LAZY")
+     * @ORM\ManyToMany(targetEntity="Tfg\RamaBundle\Entity\Rama", mappedBy="disciplinas")
      */
     private $ramas;
 
-    public function __toString(){
-      return(string)  $this->getNombre();
-   }
-
-   public function getObj(){
-     return $this;
-   }
-
-   public function setRamas($ramas){
-     $this->ramas = $rama;
-   }
-
-   public function getRamas(){
-     return $this->rama;
-   }
-
-   public function addRama($rama){
-     $this->ramas[]=$rama;
-     return $this->ramas;
-   }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ramas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -78,6 +64,7 @@ class Disciplina
      * Set nombre
      *
      * @param string $nombre
+     *
      * @return Disciplina
      */
     public function setNombre($nombre)
@@ -101,6 +88,7 @@ class Disciplina
      * Set descripcion
      *
      * @param string $descripcion
+     *
      * @return Disciplina
      */
     public function setDescripcion($descripcion)
@@ -120,15 +108,37 @@ class Disciplina
         return $this->descripcion;
     }
 
-    public function getDisciplina(){
-      return $this;
+    /**
+     * Add rama
+     *
+     * @param \Tfg\RamaBundle\Entity\Rama $rama
+     *
+     * @return Disciplina
+     */
+    public function addRama(\Tfg\RamaBundle\Entity\Rama $rama)
+    {
+        $this->ramas[] = $rama;
+
+        return $this;
     }
 
-    public function __construct()
+    /**
+     * Remove rama
+     *
+     * @param \Tfg\RamaBundle\Entity\Rama $rama
+     */
+    public function removeRama(\Tfg\RamaBundle\Entity\Rama $rama)
     {
-      $this->ramas = new ArrayCollection();
-      /*
-      $conocimiento = new Conocimiento();
-      */
+        $this->ramas->removeElement($rama);
+    }
+
+    /**
+     * Get ramas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRamas()
+    {
+        return $this->ramas;
     }
 }

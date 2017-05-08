@@ -9,9 +9,8 @@ imports:
     - { resource: "@VisitasOfertaBundle/Resources/config/services.yml" }
     - { resource: "@VisitasDemandaBundle/Resources/config/services.yml" }
     - { resource: "@AreaBundle/Resources/config/services.yml" }
-    - { resource: "@RamaBundle/Resources/config/services.yml" }
     - { resource: "@DisciplinaBundle/Resources/config/services.yml" }
-
+    - { resource: "@RamaBundle/Resources/config/services.yml" }
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 #brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'

@@ -8,11 +8,4 @@ tfg\RamaBundle\Entity\Rama:
             id: true
             generator:
                 strategy: AUTO
-    fields:
-        nombre:
-            type: string
-            length: 255
-            unique: true
-        descripcion:
-            type: text
     lifecycleCallbacks: {  }

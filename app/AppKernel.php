@@ -39,8 +39,8 @@ class AppKernel extends Kernel
             // You need to add this dependency to make media functional
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new tfg\AreaBundle\AreaBundle(),
-            new tfg\RamaBundle\RamaBundle(),
-            new tfg\DisciplinaBundle\DisciplinaBundle()
+            new tfg\DisciplinaBundle\DisciplinaBundle(),
+            new tfg\RamaBundle\RamaBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

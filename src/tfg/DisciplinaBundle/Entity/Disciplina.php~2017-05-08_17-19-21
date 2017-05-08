@@ -35,20 +35,7 @@ class Disciplina
      */
     private $descripcion;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Tfg\RamaBundle\Entity\Rama", mappedBy="disciplinas")
-     */
-    private $ramas;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->ramas = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -108,37 +95,4 @@ class Disciplina
         return $this->descripcion;
     }
 
-    /**
-     * Add rama
-     *
-     * @param \Tfg\RamaBundle\Entity\Rama $rama
-     *
-     * @return Disciplina
-     */
-    public function addRama(\Tfg\RamaBundle\Entity\Rama $rama)
-    {
-        $this->ramas[] = $rama;
-
-        return $this;
-    }
-
-    /**
-     * Remove rama
-     *
-     * @param \Tfg\RamaBundle\Entity\Rama $rama
-     */
-    public function removeRama(\Tfg\RamaBundle\Entity\Rama $rama)
-    {
-        $this->ramas->removeElement($rama);
-    }
-
-    /**
-     * Get ramas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getRamas()
-    {
-        return $this->ramas;
-    }
 }

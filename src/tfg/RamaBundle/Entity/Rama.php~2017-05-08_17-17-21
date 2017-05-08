@@ -1,0 +1,43 @@
+<?php
+
+namespace tfg\RamaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Rama
+ *
+ * @ORM\Table(name="Rama")
+ * @ORM\Entity
+ */
+class Rama
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->disciplinas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+}
